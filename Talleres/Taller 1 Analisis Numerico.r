@@ -55,7 +55,12 @@ respuesta = velocidad*tiempo
 velocidadInferior = velocidad-errorVelocidad
 tiempoInferior = tiempo - errorTiempo
 
-
+vectorVelocidad = 0
+vectorTiempo = 0
+vectorDistancia = 0
+vectorERelativo = 0
+vectorEAbsoluto = 0
+iCounter = 1
 
 while(velocidadInferior <= velocidad + errorVelocidad)
 {
@@ -63,8 +68,13 @@ while(velocidadInferior <= velocidad + errorVelocidad)
   errorAbsoluto = round(abs(distancia-respuesta),2)
   errorRelativo = round(errorAbsoluto/respuesta*100,2)
   
-  cat("Velocidad ",velocidadInferior," Tiempo ",tiempoInferior," Distancia ",distancia," E.Absolito "
-      ,errorAbsoluto," E.Relativo ", errorRelativo," \n")
+  vectorVelocidad[iCounter] = velocidadInferior
+  vectorTiempo[iCounter] = tiempoInferior
+  vectorDistancia[iCounter] = distancia
+  vectorEAbsoluto[iCounter] = errorAbsoluto
+  vectorERelativo[iCounter] = errorRelativo
+  
+  iCounter=iCounter+1
   
   tiempoInferior = tiempoInferior + errorTiempo
   
@@ -74,3 +84,9 @@ while(velocidadInferior <= velocidad + errorVelocidad)
     velocidadInferior = velocidadInferior + errorVelocidad
   }
 }
+
+resultados = matrix(c(vectorVelocidad,vectorTiempo,vectorDistancia,vectorEAbsoluto,vectorERelativo)
+                    ,ncol=5,nrow = length(vectorEAbsoluto),byrow = FALSE
+                    , dimnames = list(seq(1,iCounter-1,1), c("Velocidad","Tiempo","Distancia","E.Absoluto","E.Relativo")))
+
+print(resultados)
