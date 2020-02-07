@@ -90,3 +90,34 @@ resultados = matrix(c(vectorVelocidad,vectorTiempo,vectorDistancia,vectorEAbsolu
                     , dimnames = list(seq(1,iCounter-1,1), c("Velocidad","Tiempo","Distancia","E.Absoluto","E.Relativo")))
 
 print(resultados)
+
+
+#Metodo Horner
+
+polinomio = c(-4,3,-3,0,2)
+x_0 = -2
+
+b_n = polinomio[length(polinomio)]
+
+numeroSumas = 0
+numeroMultiplicaciones = 0
+
+end = length(polinomio)-1
+
+metodoHorner = function(polinomio,x_0)
+{
+  
+  for (a_i in seq(end,1,-1))
+  {
+    b_n = polinomio[a_i] + b_n*x_0
+  
+    numeroSumas = numeroSumas + 1
+    numeroMultiplicaciones = numeroMultiplicaciones +1
+    
+  }
+  print(b_n)
+  cat("Numero de sumas :",numeroSumas,"\n")
+  cat("Numero de Multiplicaciones :",numeroMultiplicaciones,"\n")
+}
+
+metodoHorner(polinomio,x_0)
