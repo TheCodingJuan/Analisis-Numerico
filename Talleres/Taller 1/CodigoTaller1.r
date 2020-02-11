@@ -123,7 +123,6 @@ metodoHorner = function(polinomio,x_0)
 metodoHorner(polinomio,x_0)
 
 #Interpolacion Perro con Splines
-
 require(PolynomF)
 require(graphics)
 library(graphicsQC)
@@ -144,7 +143,6 @@ y4 = y[14:15] ; x4 = x[14:15]
 y5 = y[15:18] ; x5 = x[15:18]
 y7 = y[18:20] ; x7 = x[18:20]
 y8 = y[20:25] ; x8 = x[20:25]
-#x9 = x[25:26] ; y9 = y[25:26]
 y10 = y[25:26];x10 = x[25:26]
 y11 = y[26:28];x11 = x[26:28]
 y12 = y[28:29];x12 = x[28:29]
@@ -160,10 +158,8 @@ p$y = i
 plot(x, y, pch=20,main = paste("Interpolacion con", n-1, "puntos"),xlim=c(0,31),ylim=c(0,9))
 lines(spline(x1, y1, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x2, y2, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
-#lines(spline(x3, y3, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x4, y4, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x5,y5, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
-#lines(spline(x6, y6, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x7, y7, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x8, y8, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x10, y10, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
