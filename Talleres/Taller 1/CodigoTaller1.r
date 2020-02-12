@@ -166,3 +166,148 @@ lines(spline(x10, y10, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x11, y11, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x12, y12, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(p, col = dog_c)
+
+
+#Calculo de Pi Binario
+
+print("Pi en numero binario")
+
+variablePi= pi - 3
+
+cat("1")
+cat("1")
+for (i in 1:13)
+{
+   variablePi = variablePi*2;
+   
+   if(variablePi >= 1)
+   {
+     cat("1")
+     variablePi = variablePi - 1;
+   }
+   else
+   {
+     cat("0")
+   }
+}
+
+#De Binario a base 10
+
+ calculoParteEntera = function(X)
+ {
+   contadorPotencias = 0
+   digito = 0
+   acomulado=0
+   
+   while(X > 0)
+   {
+     digito = X %% 10
+     
+     acomulado = acomulado + (digito*(2^contadorPotencias))
+     
+     contadorPotencias = contadorPotencias + 1
+     
+     X = X %/% 10
+   }
+   
+   return(acomulado)
+   
+ }
+ 
+ calculoParteDecimal = function(X)
+ {
+   copiaX = X
+   contadorPotencias = 0
+   digitos = 0
+   digito = 0
+   acomulado=0
+   
+   while(X > 0)
+   {
+     digitos = digitos+1
+     
+     X = X %/% 10
+   }
+   
+   contadorPotencias = -digitos;
+   
+   while(copiaX > 0)
+   {
+     digito = copiaX %% 10
+     
+     acomulado = acomulado + (digito*(2^contadorPotencias))
+     
+     contadorPotencias = contadorPotencias + 1
+     
+     copiaX = copiaX %/% 10
+   }
+   
+   return(acomulado)
+   
+   
+ }
+ 
+ cat("Primer Numero: ",calculoParteEntera(101010101),"\n")
+ 
+ cat("Segundo Numero: ",calculoParteEntera(1011) + calculoParteDecimal(101),"\n")
+
+ cat("Tercer Numero: ",calculoParteEntera(10111) + calculoParteDecimal(010101010101))
+ 
+ cat("Cuarto Numero: ",calculoParteEntera(111) + calculoParteDecimal(11111111))
+ 
+ 
+ #De Base 10 a binaria
+ 
+ calculoParteDecimalABinaria = function(x,cantidadDeBits)
+ {
+   numero=""
+   for (i in 1:cantidadDeBits)
+   {
+     x = x*2;
+     
+     
+     if(x >= 1)
+     {
+       
+      
+       paste(numero,"1")
+       x = x - 1;
+     }
+     else
+     {
+       paste(numero,"0")
+     }
+     
+     print("XXXX")
+   }
+   return(numero)
+ }
+ 
+ calculoParteEnteraABinaria = function(x)
+ {
+   acomulado=0
+   nexp=1
+   while(x>0)
+   {
+     
+     digito = x%%2
+     acomulado =  acomulado+nexp*digito
+     nexp=nexp*10
+     
+     x = x%/%2
+     
+   }
+   return (acomulado)
+ }
+ 
+
+ 
+ cat("Primer Numero a Base 10: ", calculoParteEnteraABinaria(11),".",calculoParteDecimalABinaria(0.25,10), "\n")
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
