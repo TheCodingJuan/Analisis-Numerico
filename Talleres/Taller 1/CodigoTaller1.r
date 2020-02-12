@@ -268,17 +268,13 @@ for (i in 1:13)
      
      if(x >= 1)
      {
-       
-      
-       paste(numero,"1")
+       numero = paste(numero,"1",sep="")
        x = x - 1;
      }
      else
      {
-       paste(numero,"0")
+       numero = paste(numero,"0",sep="")
      }
-     
-     print("XXXX")
    }
    return(numero)
  }
@@ -303,9 +299,9 @@ for (i in 1:13)
 
  
  cat("Primer Numero a Base 10: ", calculoParteEnteraABinaria(11),".",calculoParteDecimalABinaria(0.25,10), "\n")
- 
- 
- 
+ cat("Segundo Numero a Base 10: ","0",".",calculoParteDecimalABinaria(0.6666666666,10), "\n")
+ cat("Tercer Numero a Base 10: ", calculoParteEnteraABinaria(30),".",calculoParteDecimalABinaria(0.6,10), "\n")
+ cat("Cuarto Numero a Base 10: ", calculoParteEnteraABinaria(99),".",calculoParteDecimalABinaria(0.9,10), "\n")
  
  
  
