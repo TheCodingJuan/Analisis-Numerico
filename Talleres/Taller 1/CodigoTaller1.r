@@ -1,5 +1,5 @@
 rm(list = ls())
-
+options(digits = 15)
 #Problema 1 : Error relativo.
 x = 536.78
 y = 536.7
@@ -97,16 +97,15 @@ print(resultados)
 polinomio = c(-4,3,-3,0,2)
 x_0 = -2
 
-b_n = polinomio[length(polinomio)]
-
-numeroSumas = 0
-numeroMultiplicaciones = 0
-
-end = length(polinomio)-1
 
 metodoHorner = function(polinomio,x_0)
 {
+
+  numeroSumas = 0
+  numeroMultiplicaciones = 0
   
+  b_n = polinomio[length(polinomio)]
+  end = length(polinomio)-1  
   for (a_i in seq(end,1,-1))
   {
     b_n = polinomio[a_i] + b_n*x_0
@@ -118,6 +117,8 @@ metodoHorner = function(polinomio,x_0)
   print(b_n)
   cat("Numero de sumas :",numeroSumas,"\n")
   cat("Numero de Multiplicaciones :",numeroMultiplicaciones,"\n")
+  
+  return(b_n)
 }
 
 metodoHorner(polinomio,x_0)
@@ -147,7 +148,7 @@ y10 = y[25:26];x10 = x[25:26]
 y11 = y[26:28];x11 = x[26:28]
 y12 = y[28:29];x12 = x[28:29]
 
-n <- length(x)
+n = length(x)
 dog_c = 3
 
 p = spline(y3,x3, n = 201)
@@ -167,6 +168,25 @@ lines(spline(x11, y11, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(spline(x12, y12, n = 201), col = dog_c,xlim=c(0,31),ylim=c(0,9))
 lines(p, col = dog_c)
 
+
+
+#Evaluar en x=1.0001
+
+
+polinomio = c()
+
+for (i in 1:50) 
+{
+  polinomio = c(polinomio,1)
+}
+
+P = metodoHorner(polinomio,1.0001)
+
+Q = ((1.0001)^51-1)/(1.0001-1)
+
+
+cat("El error absoluto entre P(X) y Q(x) Es: ",abs(P-Q),"\n")
+cat("El error relativo entre P(x) y Q(x) Es: ",abs(P-Q)/Q*100,"%\n")
 
 #Calculo de Pi Binario
 
@@ -358,3 +378,80 @@ for (i in 1:13)
  graficar = sumaNNumerosNaturales(pruebas)
  
  plot(pruebas,graficar, xlab = "Pruebas", ylab = "Resultados",type = 'b')
+ 
+ 
+ 
+ #Metodo de Steffensen
+ f = function(x)
+ {
+   return (x^2-cos(x))
+ }
+ 
+ Gx = function(x) return (sqrt(cos(x)))
+ 
+ vectorAux =0
+ 
+ puntoFijo = function(a,b,i)
+ {
+   if((Gx(a)-a)*(Gx(b)-b) < 0)
+   {
+     x=(a+b)/2
+     iteraciones = 0
+     vectorAux = 0
+     dx = 0
+     tol = 1e-8
+     
+     while (Gx(x) != x & iteraciones < i) 
+     {
+       dx=abs(a-b)/2
+       
+       if(dx > tol)
+       {
+         if (Gx(x) < x)
+         {
+           b = x
+         }
+         else {a = x}
+       }
+       else 
+       {
+         break
+       }  
+       x=(a+b)/2
+       vectorAux = c(vectorAux,x)
+       iteraciones = iteraciones+1
+     }
+     vectorAux <<- vectorAux
+     return(x)
+     
+   }
+   else
+   {
+     cat("No tiene raíz la funcion en ese intervalo\n")
+   }
+ }
+ 
+ 
+ # Método aitken
+ aitken = function(x,xPos1,xPos2)
+ {
+   
+   resultado = xPos2 - (((xPos2 - xPos1)^2)/(xPos2 -2*xPos1+x)) 
+   
+   return(resultado)
+ }
+ 
+ i =18
+ iteracion = 3
+ puntoFijo(0,1,i)
+ x2 = 0.824132919311523
+ x3 = 0.824137369791667
+ while(iteracion < i ){
+   cat("i= ",iteracion," x=", aitken(vectorAux[iteracion-2],vectorAux[iteracion-1],vectorAux[iteracion]),"\n")
+   iteracion = iteracion +1
+ }
+ cat("Resultado sin aceleracion: ", puntoFijo(0,1,i), "\n")
+ cat("Resultado con aceleracion: ", aitken(vectorAux[i-3],vectorAux[i-2],vectorAux[i-1]), "\n")
+ cat("Valor real de la solucion: 0.8241323123")
+ cat("Resultado sin aceleracion: ", x2 , "\n")
+ cat("Resultado con aceleracion: ", x3, "\n")
