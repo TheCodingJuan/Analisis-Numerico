@@ -332,5 +332,29 @@ for (i in 1:13)
  
  graficar = matrizTriangularSuperior(sizes)
  
- plot(sizes,graficar,xlab = "TamaÃ±os",ylab = "Resultados", type = 'l',col = 1)
+ plot(sizes,graficar,xlab = "TamaÃ±os",ylab = "Resultados", type = 'b',col = 1)
  
+ 
+ #Suma primeros numeros naturales
+ 
+ pruebas = c(10,20,30,40,50,60,70,80,90,100)
+ 
+ sumaNNumerosNaturales = function(valores)
+ {
+    contador=0
+    resultados = c()
+    for (valor in valores) 
+    {
+       contador = 0
+       for (i in 1:valor) 
+       {
+          contador = contador + i^2
+       }
+       resultados = c(resultados,contador)
+    }
+    return(resultados)
+ }
+ 
+ graficar = sumaNNumerosNaturales(pruebas)
+ 
+ plot(pruebas,graficar, xlab = "Pruebas", ylab = "Resultados",type = 'b')
