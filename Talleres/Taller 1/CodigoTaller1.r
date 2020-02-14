@@ -171,8 +171,6 @@ lines(p, col = dog_c)
 
 
 #Evaluar en x=1.0001
-
-
 polinomio = c()
 
 for (i in 1:50) 
