@@ -1,3 +1,13 @@
+
+# -------------------------------------------------------------------------------------
+# Código realizado por: 
+# * Juan Jose Camacho   
+# * Gabriela Maria Camacho
+# -------------------------------------------------------------------------------------
+# Clase análisis numérico mier-vier 2001
+# -------------------------------------------------------------------------------------
+
+
 rm(list = ls())
 options(digits = 15)
 #Problema 1 : Error relativo.
@@ -453,3 +463,5 @@ for (i in 1:13)
  cat("Valor real de la solucion: 0.8241323123")
  cat("Resultado sin aceleracion: ", x2 , "\n")
  cat("Resultado con aceleracion: ", x3, "\n")
+ 
+ 
