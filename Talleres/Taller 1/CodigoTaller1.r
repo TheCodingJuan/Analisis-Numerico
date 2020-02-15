@@ -464,4 +464,28 @@ for (i in 1:13)
  cat("Resultado sin aceleracion: ", x2 , "\n")
  cat("Resultado con aceleracion: ", x3, "\n")
  
+ #Aitken
+ 
+ vector = c()
+ 
+ for (i in 1:20) 
+ {
+    vector = c(vector,cos(1/i))
+ }
+ 
+ aitken = function(x,xPos1,xPos2)
+ {
+    
+    resultado = xPos2 - (((xPos2 - xPos1)^2)/(xPos2 -2*xPos1+x)) 
+    
+    return(resultado)
+ }
+ 
+ 
+ i = 20
+ iteracion = 3
+ while(iteracion < i ){
+    cat("i= ",iteracion," x=", aitken(vector[iteracion-2],vector[iteracion-1],vector[iteracion]),"\n")
+    iteracion =iteracion +1
+ }
  
