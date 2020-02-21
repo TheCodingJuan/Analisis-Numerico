@@ -481,11 +481,67 @@ for (i in 1:13)
     return(resultado)
  }
  
+ cat("Vector Original: ","\n")
+ 
+ 
+ for (i in 1:20) 
+ {
+  cat(vector[i],"\n")
+ }
+ 
+ vectorAcelerado = c()
  
  i = 20
  iteracion = 3
- while(iteracion < i ){
-    cat("i= ",iteracion," x=", aitken(vector[iteracion-2],vector[iteracion-1],vector[iteracion]),"\n")
+ while(iteracion < i )
+ {
+    vectorAcelerado = c(vectorAcelerado,aitken(vector[iteracion-2],vector[iteracion-1],vector[iteracion]))
     iteracion =iteracion +1
  }
+ 
+ #Biseccion para Aitken
+ 
+ vectorAux=0
+ f = function(x)
+ {
+   return (3*(sin(x)^3)-1) - 4*(sin(x)*cos(x))
+ }
+ 
+ vectorBiseccion = c()
+ biseccion = function(a,b,i)
+ {
+   e = b-a
+   error =  1e-6
+   x = 0
+   iteraciones = 0
+   vectorAux = 0
+   while (error < e & iteraciones < i )
+   {
+     x = (a+b)/2
+     if(f(x)*f(a) < 0 )
+       b = x
+     if(f(x)*f(b) < 0)
+       a = x
+     
+     e = (b-a)/2
+     vectorAux <- c(vectorAux,x)
+     iteraciones <- iteraciones+1
+   }
+   vectorAux <<- vectorAux
+   e <<- e
+   return(x)
+ }
+ iteracion = 3
+ 
+ biseccion(0,2,i)
+ while(iteracion < i ){
+   cat("i= ",iteracion," x=", aitken(vectorAux[iteracion-2],vectorAux[iteracion-1],vectorAux[iteracion]),"\n")
+   iteracion <- iteracion +1
+ }
+ cat("Resultado sin aceleracion: ", biseccion(0,1,i), "\n")
+ cat("Resultado con aceleracion: ", aitken(vectorAux[i-3],vectorAux[i-2],vectorAux[i-1]), "\n")
+ cat("Valor real de la solucion: 0.765642")
+ 
+ 
+ 
  
