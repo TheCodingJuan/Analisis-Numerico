@@ -1,3 +1,5 @@
+#Instalar Pracma
+library(pracma)
 #Numeros de Chebyshev
  
  
@@ -19,3 +21,41 @@
  listaCalculada= numerosChebyShev(-pi/64,pi/64,seq(1,20))
  
  print(listaCalculada)
+ 
+ #Polinomio de Taylor en Sen(X)
+
+ f = function(x)
+ {
+     return (sin(x))
+ }
+ 
+ polinomioCalculado = taylor(f,0,3)
+ 
+ print(polinomioCalculado)
+ 
+ evaluarEnTaylor = function(x,polinomio)
+ {
+     grados = length(polinomio)-1
+     total = 0
+     for (i in polinomio) 
+     {
+         total = total + i * (x^grados) 
+         grados = grados - 1
+     }
+     
+     return (total)
+ }
+ 
+ print(evaluarEnTaylor(1,polinomioCalculado))
+ 
+ salto = (pi/64-(-pi/64))/20
+ inicio = -pi/64
+ 
+ for (i in 1:20) {
+     
+     cat("Valor de Seno: ",sin(inicio),"\t")
+     cat("Valor en Taylor: ",evaluarEnTaylor(inicio,polinomioCalculado),"\n")
+     
+     inicio = inicio + salto
+     
+ }
