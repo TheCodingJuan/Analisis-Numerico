@@ -1,7 +1,7 @@
 #Instalar Pracma
 library(pracma)
 #Numeros de Chebyshev
- 
+ rm(list = ls())
  
  numerosChebyShev = function(intervaloA,intervaloB,listaNumeros)
  {
@@ -29,7 +29,7 @@ library(pracma)
      return (sin(x))
  }
  
- polinomioCalculado = taylor(f,0,3)
+ polinomioCalculado = taylor(f,0,10)
  
  print(polinomioCalculado)
  
@@ -48,13 +48,16 @@ library(pracma)
  
  print(evaluarEnTaylor(1,polinomioCalculado))
  
- salto = (pi/64-(-pi/64))/20
+ salto = (pi/64-(-pi/64))/10
  inicio = -pi/64
  
- for (i in 1:20) {
+ for (i in 1:10) 
+ {
      
      cat("Valor de Seno: ",sin(inicio),"\t")
      cat("Valor en Taylor: ",evaluarEnTaylor(inicio,polinomioCalculado),"\n")
+     
+     
      
      inicio = inicio + salto
      
