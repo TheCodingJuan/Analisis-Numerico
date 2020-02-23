@@ -8,6 +8,7 @@
 
 
 #Numeros de Chebyshev
+library(PolynomF)
 
 numerosChebyShev = function(intervaloA,intervaloB,listaNumeros)
 {
@@ -23,7 +24,7 @@ numerosChebyShev = function(intervaloA,intervaloB,listaNumeros)
 }
 
 
-n = 7
+n = 3
 
 E = 10e-5
 
@@ -58,8 +59,36 @@ while (ns = ns - 1)
   minimax =  solve(matrizDeEcuaciones,fxCheby)
   
   
+  polinomioFinal = polynom(a=minimax[1:(length(minimax)-1)])
   
-  print(minimax)
+  print(polinomioFinal)
+  
+  salto = (pi/64-(-pi/64))/10
+  inicio = -pi/64
+  errorRelativo = c()
+  errorAbsoluto = c()
+  for (i in 1:10) {
+    
+    
+    cat("\\hline ",inicio," & ",sin(inicio)," & ",polinomioFinal(inicio),
+        " & ", abs(sin(inicio)-polinomioFinal(inicio))," & ", 
+        abs((sin(inicio)-polinomioFinal(inicio))/sin(inicio)),"\\\\","\n")
+    
+    errorRelativo = c(errorRelativo,abs((sin(inicio)-polinomioFinal(inicio))/sin(inicio)))
+    errorAbsoluto = c(errorAbsoluto,abs(sin(inicio)-polinomioFinal(inicio)))
+    
+    inicio = inicio + salto
+    
+  }
+  
+  x = seq(-pi/64,pi/64,length.out = 10)
+  
+  
+  plot(x, sin(x),type = 'b',col="blue", main = "Funcion Sin(x)" )
+  plot(x, polinomioFinal(x),type = 'b',col = "red",main = "Polinomio Generado")
+  
+  plot(x,errorRelativo,type = 'b',main = "Error Relativo")
+  plot(x,errorAbsoluto,type = 'b',main = "Error Absoluto")
   
   
   
