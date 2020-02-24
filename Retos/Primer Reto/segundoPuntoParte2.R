@@ -58,6 +58,8 @@ while (ns = ns - 1)
   
   minimax =  solve(matrizDeEcuaciones,fxCheby)
   
+  print(minimax)
+  
   
   polinomioFinal = polynom(a=minimax[1:(length(minimax)-1)])
   
@@ -68,11 +70,6 @@ while (ns = ns - 1)
   errorRelativo = c()
   errorAbsoluto = c()
   for (i in 1:10) {
-    
-    
-    cat("\\hline ",inicio," & ",sin(inicio)," & ",polinomioFinal(inicio),
-        " & ", abs(sin(inicio)-polinomioFinal(inicio))," & ", 
-        abs((sin(inicio)-polinomioFinal(inicio))/sin(inicio)),"\\\\","\n")
     
     errorRelativo = c(errorRelativo,abs((sin(inicio)-polinomioFinal(inicio))/sin(inicio)))
     errorAbsoluto = c(errorAbsoluto,abs(sin(inicio)-polinomioFinal(inicio)))
