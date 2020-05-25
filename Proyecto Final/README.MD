@@ -3,8 +3,8 @@
 ## Pontificia Universidad Javeriana || Ingeniería de sistemas
 
 ## Integrantes:
-- Juan José Camacho 
-- Gabriela Maria Camacho
+- Juan José Camacho [TheCodingJuan](https://github.com/TheCodingJuan).
+- Gabriela Maria Camacho [gabriela10ca](https://github.com/gabriela10ca).
 
 ## Instalación
 1. Entorno de desarrollo
